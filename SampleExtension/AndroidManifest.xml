@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="robj.extension.dummy"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="17" />
+    
+    <uses-permission android:name="robj.floating.notifications.EXTENSION" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        
+        <service android:name="robj.extension.dummy.mService" >
+            <intent-filter>
+                <action android:name="robj.floating.notifications.isExtension" />
+            </intent-filter>
+
+            <meta-data android:name="label" android:value="Dummy Extension" />
+            <meta-data android:name="settingsActivity" android:value=".Settings" />
+        </service>
+        
+        <receiver android:name="robj.extension.dummy.ActionReceiver" >
+            
+            <intent-filter>
+                <action android:name="robj.floating.notifications.extension" />
+            </intent-filter>
+            
+        </receiver>
+        
+        <activity
+            android:name="robj.extension.dummy.Settings"
+            android:label="@string/app_name"
+            android:exported="true" >
+        </activity>
+        
+    </application>
+
+</manifest>
