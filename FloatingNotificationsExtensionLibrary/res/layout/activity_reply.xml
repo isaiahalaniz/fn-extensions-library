@@ -51,6 +51,7 @@
 	        android:maxLines="3"
 	        android:layout_weight="1"
 	        android:hint="Reply.."
+	        android:inputType="textLongMessage"
 	        android:textColor="#000000" />
 	    
 	    <ImageButton
