@@ -110,7 +110,9 @@ public class Extension {
 	}
 	
 	public static void replyOverlay(String edittextHint, String previousText, 
-										Bitmap image, final onClickListener imageOnClick, final onClickListener sendOnClick, Context context, boolean lightTheme)
+										Bitmap image, final onClickListener imageOnClick, final onClickListener sendOnClick,
+										final onClickListener extraOnClick, final boolean removeViewOnExtraClick, final Bitmap extraButton, 
+										Context context, boolean lightTheme)
 	{
 		final WindowManager windowManager = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE));
 		
@@ -124,8 +126,9 @@ public class Extension {
 		message.setMovementMethod(new ScrollingMovementMethod());
 		message.setText(previousText);
 		
-		((ImageView) view.findViewById(R.id.imgContact)).setImageBitmap(image); //image link to contact card
-		((ImageView) view.findViewById(R.id.imgContact)).setOnClickListener(new OnClickListener(){
+		ImageView iv = (ImageView) view.findViewById(R.id.imgContact);
+		iv.setImageBitmap(image); //image link to contact card
+		iv.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) 
 			{
@@ -133,14 +136,31 @@ public class Extension {
 			}
 		});
 
-		((ImageView) view.findViewById(R.id.btnCancel)).setVisibility(View.VISIBLE);
-		((ImageButton) view.findViewById(R.id.btnCancel)).setOnClickListener(new OnClickListener(){
+		ImageButton img = (ImageButton) view.findViewById(R.id.btnCancel);
+		img.setVisibility(View.VISIBLE);
+		img.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v) 
 			{
 				windowManager.removeView(view);
 			}
 		});
+		
+		if(extraOnClick != null)
+		{
+			img = (ImageButton) view.findViewById(R.id.btnExtra); 
+			img.setVisibility(View.VISIBLE);
+			img.setImageBitmap(extraButton);
+			img.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View v) 
+				{
+					if(removeViewOnExtraClick)
+						windowManager.removeView(view);
+					extraOnClick.onClick();
+				}
+			});
+		}
 
 	((ImageButton) view.findViewById(R.id.btnSend)).setOnClickListener(
 	new OnClickListener()
@@ -161,7 +181,7 @@ public class Extension {
 	}
 	
 	@SuppressWarnings("rawtypes")
-	public static void replyPopup(long id, String hint, String previousMsg, Bitmap image, Context context, Class reply, boolean lightTheme)
+	public static void replyPopup(long id, String hint, String previousMsg, Bitmap image, boolean extraBtn, Bitmap extraBtnImage, Context context, Class reply, boolean lightTheme)
 	{
 		try { 
 			Intent intent = new Intent(context, reply);
@@ -170,6 +190,8 @@ public class Extension {
 	  		intent.putExtra("hint", hint);
 	  		intent.putExtra("previous", previousMsg);
 	  		intent.putExtra("image", image);
+	  		intent.putExtra("extraBtn", extraBtn);
+	  		intent.putExtra("extraBtnImage", extraBtnImage);
 	  		intent.putExtra("lightTheme", lightTheme);
 	  		context.startActivity(intent);
 		} catch (Exception e) { e.printStackTrace(); }

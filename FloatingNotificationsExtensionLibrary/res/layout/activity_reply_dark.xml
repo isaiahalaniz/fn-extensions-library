@@ -52,6 +52,16 @@
 	        android:layout_weight="1"
 	        android:hint="Reply.."
 	        android:inputType="textLongMessage" />
+        
+        <ImageButton
+	        android:id="@+id/btnExtra"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="5dip"
+	        android:background="@drawable/cancel_light"
+	        android:onClick="onExtraButtonClick"
+	        android:layout_gravity="center"
+	        android:visibility="gone" />
 	    
 	    <ImageButton
 	        android:id="@+id/btnSend"
@@ -59,7 +69,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_marginLeft="5dip"
 	        android:background="@drawable/send"
-	        
+	        android:onClick="onReply"
 	        android:layout_gravity="center" />
 	
 	</LinearLayout>

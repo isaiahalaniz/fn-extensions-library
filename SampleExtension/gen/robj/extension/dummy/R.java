@@ -47,9 +47,10 @@ public final class R {
         public static int send_up_light=0x7f020012;
     }
     public static final class id {
-        public static int action_settings=0x7f080005;
+        public static int action_settings=0x7f080006;
         public static int btnCancel=0x7f080002;
-        public static int btnSend=0x7f080004;
+        public static int btnExtra=0x7f080004;
+        public static int btnSend=0x7f080005;
         public static int etReply=0x7f080003;
         public static int imgContact=0x7f080000;
         public static int tvMessage=0x7f080001;

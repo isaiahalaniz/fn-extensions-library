@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -36,6 +37,13 @@ public abstract class Reply extends Activity {
 		message.setMovementMethod(new ScrollingMovementMethod());
 		message.setText(getIntent().getStringExtra("previous"));
 
+		if(getIntent().getBooleanExtra("extraBtn", false))
+		{
+			ImageButton img = (ImageButton) view.findViewById(R.id.btnExtra);
+			img.setImageBitmap((Bitmap) getIntent().getParcelableExtra("extraBtnImage"));
+			img.setVisibility(View.VISIBLE);
+		}
+	
 		((ImageView) view.findViewById(R.id.imgContact)).setImageBitmap((Bitmap) getIntent().getParcelableExtra("image")); //image link to contact card
 		
 		setContentView(view);
@@ -54,5 +62,7 @@ public abstract class Reply extends Activity {
 	public abstract void onReply(String msg);
 	
 	public abstract void onImageClick(View v);
+	
+	public abstract void onExtraButtonClick(View v);
 	
 }

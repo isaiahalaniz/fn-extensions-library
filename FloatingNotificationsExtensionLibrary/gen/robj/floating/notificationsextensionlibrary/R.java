@@ -43,7 +43,8 @@ public final class R {
     }
     public static final class id {
         public static int btnCancel=0x7f050002;
-        public static int btnSend=0x7f050004;
+        public static int btnExtra=0x7f050004;
+        public static int btnSend=0x7f050005;
         public static int etReply=0x7f050003;
         public static int imgContact=0x7f050000;
         public static int tvMessage=0x7f050001;
