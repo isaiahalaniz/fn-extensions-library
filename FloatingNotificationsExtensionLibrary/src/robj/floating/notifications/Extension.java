@@ -6,6 +6,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.text.method.ScrollingMovementMethod;
@@ -254,4 +255,18 @@ public class Extension {
     	String ret = "" + settings.getString(WINDOWSTATECHANGED, "");
     	return ret;
 	}
+	
+	public static boolean isEnabled(Context context)
+	  {
+	      try {
+	          Context con = context.createPackageContext("robj.floating.notifications", Context.CONTEXT_IGNORE_SECURITY);
+	          SharedPreferences pref = con.getSharedPreferences("robj.floating.notifications_Public", Context.MODE_WORLD_READABLE | Context.MODE_MULTI_PROCESS);
+	          String str = pref.getString("extensions", "");
+	          return str.contains(context.getPackageName());
+	      } catch (NameNotFoundException e) {
+	    	  e.printStackTrace();
+	          return false;
+	      }
+	  }
+	
 }
