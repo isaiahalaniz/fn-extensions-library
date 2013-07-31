@@ -28,6 +28,7 @@ public class Extension {
 	public static String INTENT = "robj.floating.notifications.extension";
 	
 	private static final String WINDOWSTATECHANGED = "windowStateChanged";
+	static final String ENABLED = "enabled";
 	
 	private static String PACKAGE = "0";
 	
@@ -256,17 +257,20 @@ public class Extension {
     	return ret;
 	}
 	
+	public static void setEnabled(Context context, boolean enabled)
+	{
+		SharedPreferences prefs = context.getSharedPreferences(context.getPackageName() + "_Enabled", Context.MODE_MULTI_PROCESS);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean(ENABLED, enabled);
+        editor.commit();
+        Log.d("Prefs", "Enabled: " + enabled);
+	}
+	
 	public static boolean isEnabled(Context context)
 	  {
-	      try {
-	          Context con = context.createPackageContext("robj.floating.notifications", Context.CONTEXT_IGNORE_SECURITY);
-	          SharedPreferences pref = con.getSharedPreferences("robj.floating.notifications_Public", Context.MODE_WORLD_READABLE | Context.MODE_MULTI_PROCESS);
-	          String str = pref.getString("extensions", "");
-	          return str.contains(context.getPackageName());
-	      } catch (NameNotFoundException e) {
-	    	  e.printStackTrace();
-	          return false;
-	      }
+		SharedPreferences settings = context.getSharedPreferences(context.getPackageName() + "_Enabled", Context.MODE_MULTI_PROCESS);
+    	boolean ret = settings.getBoolean(ENABLED, false);
+    	return ret;
 	  }
 	
 }
