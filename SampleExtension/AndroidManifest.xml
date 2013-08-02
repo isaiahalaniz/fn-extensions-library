@@ -33,11 +33,27 @@
             
         </receiver>
         
+        <receiver android:name="robj.floating.notifications.EnabledReceiver">
+            <intent-filter> 
+                <action android:name="robj.floating.notifications.extension.ENABLED"></action>
+                <action android:name="robj.floating.notifications.extension.DISABLED"></action>
+            </intent-filter>
+        </receiver>
+        
         <activity
             android:name="robj.extension.dummy.Settings"
             android:label="@string/app_name"
             android:exported="true" >
         </activity>
+        
+        <receiver android:name=".PowerampReceiver">
+            <intent-filter> 
+                <action android:name="com.maxmpz.audioplayer.AA_CHANGED" />
+                <action android:name="com.maxmpz.audioplayer.STATUS_CHANGED" />
+                <action android:name="com.maxmpz.audioplayer.PLAYING_MODE_CHANGED" />
+                <action android:name="com.maxmpz.audioplayer.TRACK_CHANGED" />
+            </intent-filter>
+        </receiver>
         
     </application>
 

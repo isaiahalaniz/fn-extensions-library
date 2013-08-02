@@ -43,6 +43,7 @@ public class Extension {
 	
 	private static String PERSISTENT = "8";
 	private static String STACK = "9";
+	private static String HIDECOUNTER = "10";
 	
 	public static int ACTION_0 = 0;
 	public static int ACTION_1 = 1;
@@ -54,15 +55,14 @@ public class Extension {
 	private static int REMOVE = 2;
 	
 	public static void addOrUpdate(final Bitmap image, final String message, final long id,
-	final Bitmap actionOne, final Bitmap actionTwo, final Bitmap actionThree, final boolean persistent, final boolean stack, Context context)
+	final Bitmap actionOne, final Bitmap actionTwo, final Bitmap actionThree, final boolean persistent, final boolean stack,
+	final boolean hideCounter, Context context)
 {
-//	if(image == null) {
-//		Log.e("Extension", "Image is null..");
-//	} else 
-//		if(message == null) {
-//		Log.e("Extension", "Message is null..");
-//	} else 
-		if(image != null && (image.getWidth() != 200 || image.getHeight() != 200)) {
+	if(image == null) {
+		Log.e("Extension", "Image is null..");
+	} else if(message == null) {
+		Log.e("Extension", "Message is null..");
+	} else if(image.getWidth() != 200 || image.getHeight() != 200) {
 		Log.e("Extension", "Image needs to be 200 by 200..");
 	} else {
 					try {
@@ -82,6 +82,7 @@ public class Extension {
 						intent.putExtra(ACTIONTHREE, actionThree);
 						intent.putExtra(PERSISTENT, persistent);
 						intent.putExtra(STACK, stack);
+						intent.putExtra(HIDECOUNTER, hideCounter);
 						
 						context.sendBroadcast(intent, "robj.floating.notifications.READ_DATA");			
 					} catch (Exception e) {
