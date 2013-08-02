@@ -56,11 +56,13 @@ public class Extension {
 	public static void addOrUpdate(final Bitmap image, final String message, final long id,
 	final Bitmap actionOne, final Bitmap actionTwo, final Bitmap actionThree, final boolean persistent, final boolean stack, Context context)
 {
-	if(image == null) {
-		Log.e("Extension", "Image is null..");
-	} else if(message == null) {
-		Log.e("Extension", "Message is null..");
-	} else if(image.getWidth() != 200 || image.getHeight() != 200) {
+//	if(image == null) {
+//		Log.e("Extension", "Image is null..");
+//	} else 
+//		if(message == null) {
+//		Log.e("Extension", "Message is null..");
+//	} else 
+		if(image != null && (image.getWidth() != 200 || image.getHeight() != 200)) {
 		Log.e("Extension", "Image needs to be 200 by 200..");
 	} else {
 					try {
