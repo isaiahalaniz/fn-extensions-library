@@ -32,14 +32,15 @@ public final class R {
         public static int chat=0x7f020008;
         public static int contact=0x7f020009;
         public static int content_read=0x7f02000a;
-        public static int ic_launcher=0x7f02000b;
-        public static int reply=0x7f02000c;
-        public static int send=0x7f02000d;
-        public static int send_down=0x7f02000e;
-        public static int send_down_light=0x7f02000f;
-        public static int send_light=0x7f020010;
-        public static int send_up=0x7f020011;
-        public static int send_up_light=0x7f020012;
+        public static int delete=0x7f02000b;
+        public static int ic_launcher=0x7f02000c;
+        public static int reply=0x7f02000d;
+        public static int send=0x7f02000e;
+        public static int send_down=0x7f02000f;
+        public static int send_down_light=0x7f020010;
+        public static int send_light=0x7f020011;
+        public static int send_up=0x7f020012;
+        public static int send_up_light=0x7f020013;
     }
     public static final class id {
         public static int btnCancel=0x7f050002;
