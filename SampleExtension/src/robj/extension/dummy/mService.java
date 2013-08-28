@@ -21,7 +21,7 @@ public class mService extends Service
 		Extension.addOrUpdate(resizeBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher)), 
 								"Hello", 0, BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher), 
 								BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher), 
-								BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher), false, false, this);
+								BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher), false, false, false, this);
 		stopSelf();
 	}
 	
