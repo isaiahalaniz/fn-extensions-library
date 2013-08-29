@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.PixelFormat;
 import android.text.method.ScrollingMovementMethod;
@@ -24,6 +25,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class Extension {
+	
+	public static String parent = "robj.floating.notifications";
 	
 	public static String INTENT = "robj.floating.notifications.extension";
 	
@@ -71,7 +74,7 @@ public class Extension {
 						
 						Intent intent = new Intent();
 						intent.setAction(INTENT);
-						intent.setPackage("robj.floating.notifications");
+						intent.setPackage(parent);
 						intent.putExtra(PACKAGE, context.getPackageName());
 						intent.putExtra(ACTION, ADDORUPDATE);
 						
@@ -97,7 +100,7 @@ public class Extension {
 	{
 		Intent intent = new Intent();
 		intent.setAction(INTENT);
-		intent.setPackage("robj.floating.notifications");
+		intent.setPackage(parent);
 		intent.putExtra(PACKAGE, context.getPackageName());
 		intent.putExtra(ACTION, REMOVE);
 		intent.putExtra(ID, id);
@@ -108,7 +111,7 @@ public class Extension {
 	{
 		Intent intent = new Intent();
 		intent.setAction(INTENT);
-		intent.setPackage("robj.floating.notifications");
+		intent.setPackage(parent);
 		intent.putExtra(PACKAGE, context.getPackageName());
 		intent.putExtra(ACTION, HIDEALL);
 		intent.putExtra(ID, id);
@@ -122,67 +125,83 @@ public class Extension {
 	{
 		final WindowManager windowManager = ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE));
 		
-		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE); 
-		final RelativeLayout view = (RelativeLayout) inflater.inflate(lightTheme ? R.layout.activity_reply : R.layout.activity_reply_dark, null);
+		Resources res = null; Context viewContext = null;
+		try {
+			viewContext = context.createPackageContext(parent, Context.CONTEXT_IGNORE_SECURITY);
+			res = viewContext.getResources();
+		} catch (NameNotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
-		final EditText et = ((EditText) view.findViewById(R.id.etReply));
-		et.setHint(edittextHint);
-
-		TextView message = ((TextView) view.findViewById(R.id.tvMessage));
-		message.setMovementMethod(new ScrollingMovementMethod());
-		message.setText(previousText);
-		
-		ImageView iv = (ImageView) view.findViewById(R.id.imgContact);
-		iv.setImageBitmap(image); //image link to contact card
-		iv.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) 
-			{
-				if(imageOnClick != null) { imageOnClick.onClick(); windowManager.removeView(view);}
-			}
-		});
-
-		ImageButton img = (ImageButton) view.findViewById(R.id.btnCancel);
-		img.setVisibility(View.VISIBLE);
-		img.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View v) 
-			{
-				windowManager.removeView(view);
-			}
-		});
-		
-		if(extraOnClick != null)
+		if(res != null)
 		{
-			img = (ImageButton) view.findViewById(R.id.btnExtra); 
+			int id = res.getIdentifier("activity_reply_dark", "layout", parent);
+			final RelativeLayout view = (RelativeLayout) LayoutInflater.from(viewContext).inflate(lightTheme ? 
+					res.getLayout(res.getIdentifier("activity_reply", "layout", parent)) : 
+						res.getLayout(id), null);
+			
+			final EditText et = (EditText) view.findViewById(res.getIdentifier("etReply", "id", parent));
+			et.setHint(edittextHint);
+	
+			TextView message = (TextView) view.findViewById(res.getIdentifier("tvMessage", "id", parent));//view.findViewById(R.id.tvMessage));
+			message.setMovementMethod(new ScrollingMovementMethod());
+			message.setText(previousText);
+			
+			ImageView iv = (ImageView) view.findViewById(res.getIdentifier("imgContact", "id", parent));//view.findViewById(R.id.imgContact);
+			iv.setImageBitmap(image); //image link to contact card
+			iv.setOnClickListener(new OnClickListener(){
+				@Override
+				public void onClick(View v) 
+				{
+					if(imageOnClick != null) { imageOnClick.onClick(); windowManager.removeView(view);}
+				}
+			});
+	
+			ImageButton img = (ImageButton) view.findViewById(res.getIdentifier("btnCancel", "id", parent));//view.findViewById(R.id.btnCancel);
 			img.setVisibility(View.VISIBLE);
-			img.setImageBitmap(extraButton);
 			img.setOnClickListener(new OnClickListener(){
 				@Override
 				public void onClick(View v) 
 				{
-					if(removeViewOnExtraClick)
-						windowManager.removeView(view);
-					extraOnClick.onClick();
+					windowManager.removeView(view);
 				}
 			});
-		}
-
-	((ImageButton) view.findViewById(R.id.btnSend)).setOnClickListener(
-	new OnClickListener()
-	{
-		@Override
-		public final void onClick(View v)
-		{
-			sendOnClick.onClick(((EditText) view.findViewById(R.id.etReply)).getText().toString());
-			windowManager.removeView(view);
-		}
-
-	}
 			
-	);
+			if(extraOnClick != null)
+			{
+				img = (ImageButton) view.findViewById(res.getIdentifier("btnExtra", "id", parent));//view.findViewById(R.id.btnExtra); 
+				img.setVisibility(View.VISIBLE);
+				img.setImageBitmap(extraButton);
+				img.setOnClickListener(new OnClickListener(){
+					@Override
+					public void onClick(View v) 
+					{
+						if(removeViewOnExtraClick)
+							windowManager.removeView(view);
+						extraOnClick.onClick();
+					}
+				});
+			}
 	
-	setOverlay(windowManager, view, context);
+			final int replyId = res.getIdentifier("etReply", "id", parent);
+		((ImageButton) view.findViewById(res.getIdentifier("btnSend", "id", parent))).setOnClickListener(
+		new OnClickListener()
+		{
+			@Override
+			public final void onClick(View v)
+			{
+				sendOnClick.onClick(((EditText) view.findViewById(replyId)).getText().toString());
+				windowManager.removeView(view);
+			}
+	
+		}
+				
+		);
+		
+		setOverlay(windowManager, view, context, replyId);
+		}
 		
 	}
 	
@@ -203,7 +222,7 @@ public class Extension {
 		} catch (Exception e) { e.printStackTrace(); }
 	}
 	
-	private static void setOverlay(WindowManager windowManager, final RelativeLayout view, final Context context)
+	private static void setOverlay(WindowManager windowManager, final RelativeLayout view, final Context context, final int replyId)
 	{
 		WindowManager.LayoutParams params = new WindowManager.LayoutParams(
 	        WindowManager.LayoutParams.MATCH_PARENT,
@@ -221,7 +240,7 @@ public class Extension {
 				@Override
 				public void run() {
 					InputMethodManager imm = (InputMethodManager) context.getSystemService(Service.INPUT_METHOD_SERVICE);
-	    			imm.showSoftInput(view.findViewById(R.id.etReply), InputMethodManager.SHOW_IMPLICIT);
+	    			imm.showSoftInput(view.findViewById(replyId), InputMethodManager.SHOW_IMPLICIT);
 				}});
 			  
 		  } catch (Exception e) {}

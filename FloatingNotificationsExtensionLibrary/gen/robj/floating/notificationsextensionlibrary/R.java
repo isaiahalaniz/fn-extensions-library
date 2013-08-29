@@ -17,41 +17,17 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static int activity_horizontal_margin=0x7f040000;
-        public static int activity_vertical_margin=0x7f040001;
+        public static int activity_horizontal_margin=0x7f030000;
+        public static int activity_vertical_margin=0x7f030001;
     }
     public static final class drawable {
         public static int call=0x7f020000;
         public static int calltwo=0x7f020001;
-        public static int cancel=0x7f020002;
-        public static int cancel_down=0x7f020003;
-        public static int cancel_down_light=0x7f020004;
-        public static int cancel_light=0x7f020005;
-        public static int cancel_up=0x7f020006;
-        public static int cancel_up_light=0x7f020007;
-        public static int chat=0x7f020008;
-        public static int contact=0x7f020009;
-        public static int content_read=0x7f02000a;
-        public static int delete=0x7f02000b;
-        public static int ic_launcher=0x7f02000c;
-        public static int reply=0x7f02000d;
-        public static int send=0x7f02000e;
-        public static int send_down=0x7f02000f;
-        public static int send_down_light=0x7f020010;
-        public static int send_light=0x7f020011;
-        public static int send_up=0x7f020012;
-        public static int send_up_light=0x7f020013;
-    }
-    public static final class id {
-        public static int btnCancel=0x7f050002;
-        public static int btnExtra=0x7f050004;
-        public static int btnSend=0x7f050005;
-        public static int etReply=0x7f050003;
-        public static int imgContact=0x7f050000;
-        public static int tvMessage=0x7f050001;
-    }
-    public static final class layout {
-        public static int activity_reply=0x7f030000;
-        public static int activity_reply_dark=0x7f030001;
+        public static int chat=0x7f020002;
+        public static int contact=0x7f020003;
+        public static int content_read=0x7f020004;
+        public static int delete=0x7f020005;
+        public static int ic_launcher=0x7f020006;
+        public static int reply=0x7f020007;
     }
 }
