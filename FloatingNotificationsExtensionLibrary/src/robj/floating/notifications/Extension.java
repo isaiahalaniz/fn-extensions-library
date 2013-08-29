@@ -41,6 +41,7 @@ public class Extension {
 	
 	public static String ACTION = "4";
 	public static String ID = "5";
+	public static String EXT_ID = "EXT_ID";
 	private static String MSG = "6";
 	private static String IMG = "7";
 	
@@ -57,7 +58,7 @@ public class Extension {
 	private static int HIDEALL = 1;
 	private static int REMOVE = 2;
 	
-	public static void addOrUpdate(final Bitmap image, final String message, final long id,
+	public static void addOrUpdate(final Bitmap image, final String message, final long id, final int ext_id,
 	final Bitmap actionOne, final Bitmap actionTwo, final Bitmap actionThree, final boolean persistent, final boolean stack,
 	final boolean hideCounter, Context context)
 {
@@ -79,6 +80,7 @@ public class Extension {
 						intent.putExtra(ACTION, ADDORUPDATE);
 						
 						intent.putExtra(ID, id);
+						intent.putExtra(EXT_ID, ext_id);
 						intent.putExtra(MSG, message);
 						intent.putExtra(IMG, image);
 						intent.putExtra(ACTIONONE, actionOne);
