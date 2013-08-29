@@ -62,7 +62,8 @@ public class Extension {
 		Log.e("Extension", "Image is null..");
 	} else if(message == null) {
 		Log.e("Extension", "Message is null..");
-	} else if(image.getWidth() < 200 || image.getHeight() < 200) {
+	} else if((image.getWidth() < 200 || image.getHeight() < 200) || 
+				(image.getWidth() > 400 || image.getHeight() > 400)) {
 		Log.e("Extension", "Image needs to be a minimum of 200 by 200 however 400 by 400 is prefered..");
 	} else {
 					try {

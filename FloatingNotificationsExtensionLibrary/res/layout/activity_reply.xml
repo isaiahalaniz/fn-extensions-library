@@ -51,7 +51,8 @@
 	        android:maxLines="3"
 	        android:layout_weight="1"
 	        android:hint="Reply.."
-	        android:textColor="#000000" />
+	        android:textColor="#000000"
+	        android:inputType="textCapSentences|textAutoCorrect" />
 	    
 	    <ImageButton
 	        android:id="@+id/btnExtra"
