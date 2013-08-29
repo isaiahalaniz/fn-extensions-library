@@ -17,9 +17,9 @@ public class EnabledReceiver extends BroadcastReceiver
 	
 	    if (intent.getAction().equals("robj.floating.notifications.extension.ENABLED"))
 	    {
-	    	Extension.setEnabled(context, true);
+	    	Extension.setEnabled(context, intent.getIntExtra("id", 0), true);
 		} else if (intent.getAction().equals("robj.floating.notifications.extension.DISABLED")) {
-			Extension.setEnabled(context, false);
+			Extension.setEnabled(context, intent.getIntExtra("id", 0), false);
 		}
 	}
 	

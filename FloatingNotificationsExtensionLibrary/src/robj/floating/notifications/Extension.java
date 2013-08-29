@@ -280,18 +280,18 @@ public class Extension {
     	return ret;
 	}
 	
-	public static void setEnabled(Context context, boolean enabled)
+	public static void setEnabled(Context context, int id, boolean enabled)
 	{
-		SharedPreferences prefs = context.getSharedPreferences(context.getPackageName() + "_Enabled", Context.MODE_MULTI_PROCESS);
+		SharedPreferences prefs = context.getSharedPreferences(context.getPackageName() + "_Enabled_" + id, Context.MODE_MULTI_PROCESS);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean(ENABLED, enabled);
         editor.commit();
-        Log.d("Prefs", "Enabled: " + enabled);
+        Log.d("Prefs", "Enabled " + id + ": " + enabled);
 	}
 	
-	public static boolean isEnabled(Context context)
+	public static boolean isEnabled(Context context, int id)
 	  {
-		SharedPreferences settings = context.getSharedPreferences(context.getPackageName() + "_Enabled", Context.MODE_MULTI_PROCESS);
+		SharedPreferences settings = context.getSharedPreferences(context.getPackageName() + "_Enabled_" + id, Context.MODE_MULTI_PROCESS);
     	boolean ret = settings.getBoolean(ENABLED, false);
     	return ret;
 	  }
