@@ -46,15 +46,6 @@
             android:exported="true" >
         </activity>
         
-        <receiver android:name=".PowerampReceiver">
-            <intent-filter> 
-                <action android:name="com.maxmpz.audioplayer.AA_CHANGED" />
-                <action android:name="com.maxmpz.audioplayer.STATUS_CHANGED" />
-                <action android:name="com.maxmpz.audioplayer.PLAYING_MODE_CHANGED" />
-                <action android:name="com.maxmpz.audioplayer.TRACK_CHANGED" />
-            </intent-filter>
-        </receiver>
-        
     </application>
 
 </manifest>

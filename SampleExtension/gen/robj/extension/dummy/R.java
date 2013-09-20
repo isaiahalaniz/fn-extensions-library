@@ -28,37 +28,18 @@ public final class R {
     public static final class drawable {
         public static final int call=0x7f020000;
         public static final int calltwo=0x7f020001;
-        public static final int cancel=0x7f020002;
-        public static final int cancel_down=0x7f020003;
-        public static final int cancel_down_light=0x7f020004;
-        public static final int cancel_light=0x7f020005;
-        public static final int cancel_up=0x7f020006;
-        public static final int cancel_up_light=0x7f020007;
-        public static final int chat=0x7f020008;
-        public static final int contact=0x7f020009;
-        public static final int content_read=0x7f02000a;
-        public static final int ic_launcher=0x7f02000b;
-        public static final int reply=0x7f02000c;
-        public static final int send=0x7f02000d;
-        public static final int send_down=0x7f02000e;
-        public static final int send_down_light=0x7f02000f;
-        public static final int send_light=0x7f020010;
-        public static final int send_up=0x7f020011;
-        public static final int send_up_light=0x7f020012;
+        public static final int chat=0x7f020002;
+        public static final int contact=0x7f020003;
+        public static final int content_read=0x7f020004;
+        public static final int delete=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int reply=0x7f020007;
     }
     public static final class id {
-        public static final int action_settings=0x7f080006;
-        public static final int btnCancel=0x7f080002;
-        public static final int btnExtra=0x7f080004;
-        public static final int btnSend=0x7f080005;
-        public static final int etReply=0x7f080003;
-        public static final int imgContact=0x7f080000;
-        public static final int tvMessage=0x7f080001;
+        public static final int action_settings=0x7f080000;
     }
     public static final class layout {
-        public static final int activity_reply=0x7f030000;
-        public static final int activity_reply_dark=0x7f030001;
-        public static final int activity_settings=0x7f030002;
+        public static final int activity_settings=0x7f030000;
     }
     public static final class menu {
         public static final int settings=0x7f070000;

@@ -19,7 +19,7 @@ public class mService extends Service
 	{
 		super.onCreate();
 		Extension.addOrUpdate(resizeBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher)), 
-								"Hello", 0, BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher), 
+								"Hello", 0, 0, BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher), 
 								BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher), 
 								BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher), false, false, false, this);
 		stopSelf();
