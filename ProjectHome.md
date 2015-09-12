@@ -1,0 +1,1 @@
+Library project to allow developers to extend the functionality of the Floating Notifications Android app.
